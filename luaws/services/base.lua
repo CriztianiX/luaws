@@ -7,6 +7,7 @@ return class.Luaws_Base_Service {
   executor = function(self, client, params, options)
     local params = params or {}
     client:cleanOptions()
+    client:cleanArgs()
     for key, value in pairs(params) do
       if not options[key] then
         error("Option " .. key .. " not supported!")

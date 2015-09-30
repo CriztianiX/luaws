@@ -2,6 +2,7 @@ local class = require("luaws.class")
 local lfs  = require("lfs")
 local SNS = require("luaws.services.sns")
 local S3 = require("luaws.services.s3")
+local SWF = require("luaws.services.swf")
 local Response = require "luaws.response"
 local table = table
 
@@ -27,6 +28,9 @@ return class.Luaws {
     self._args = {}
     self._cmd = "aws"
   end,
+  SWF = function(self)
+    return SWF.new(self)
+  end,
   SNS = function(self)
     return SNS.new(self)
   end,
@@ -47,6 +51,9 @@ return class.Luaws {
   end,
   getOptions = function(self)
     return self._options
+  end,
+  cleanArgs = function(self)
+    self._args = {}
   end,
   cleanOptions = function(self)
     self._options = {}
@@ -84,6 +91,11 @@ return class.Luaws {
     local tmpname = os.tmpname ()
     local f = io.open(tmpname, "w")
     local cmd = self:buildCommand()
+
+    if os.getenv("USE_DEBUG") then
+      print(cmd)
+    end
+
     local access_key = "export AWS_ACCESS_KEY_ID="..self._access_key
     local access_secret = "export AWS_SECRET_ACCESS_KEY="..self._access_secret
     local region = "export AWS_DEFAULT_REGION="..self._region
@@ -99,7 +111,7 @@ return class.Luaws {
     local handle = popen("bash " .. tmpname)
     local result = handle:read("*a")
     handle:close()
-    os.remove(tmpname)
+    --  os.remove(tmpname)
     return self:toTable(result)
   end,
 
