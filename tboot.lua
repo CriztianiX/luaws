@@ -8,6 +8,7 @@ local luaws = Luaws.new({
 local result = luaws:S3():putObject({
   Key = "LICENSE",
   Bucket = os.getenv("AWS_BUCKET") .. "LICENSE",
+  ACL = "public-read"
 })
 
 os.exit()
