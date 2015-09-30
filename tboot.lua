@@ -5,9 +5,13 @@ local luaws = Luaws.new({
   region = os.getenv("AWS_REGION")
 })
 
-local result = luaws:SNS():listTopics()
-print(result)
+local result = luaws:S3():putObject({
+  Key = "LICENSE",
+  Bucket = os.getenv("AWS_BUCKET") .. "LICENSE",
+})
 
+os.exit()
+local result = luaws:SNS():listTopics()
 local result = luaws:SNS():listTopics({
   NextToken = "TOKEN"
 })

@@ -11,7 +11,12 @@ return class.Luaws_Base_Service {
       if not options[key] then
         error("Option " .. key .. " not supported!")
       end
-      client:setOption(options[key], value)
+
+      if type(options[key]) == "table" then
+        client:setArg(options[key].index, value)
+      else
+        client:setOption(options[key], value)
+      end
     end
     return client:executor()
   end

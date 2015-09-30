@@ -1,6 +1,7 @@
 local class = require("luaws.class")
 local lfs  = require("lfs")
 local SNS = require("luaws.services.sns")
+local S3 = require("luaws.services.s3")
 local Response = require "luaws.response"
 local table = table
 
@@ -23,10 +24,14 @@ return class.Luaws {
     self._service = false
     self._method = false
     self._options = {}
+    self._args = {}
     self._cmd = "aws"
   end,
   SNS = function(self)
     return SNS.new(self)
+  end,
+  S3 = function(self)
+    return S3.new(self)
   end,
   setService = function(self, service)
     self._service = service
@@ -36,6 +41,9 @@ return class.Luaws {
   end,
   setOption = function(self, key, value)
     self._options[key] = value
+  end,
+  setArg = function(self, key, value)
+    self._args[key] = value
   end,
   getOptions = function(self)
     return self._options
@@ -58,11 +66,13 @@ return class.Luaws {
       error("Method unknown or not set")
     end
 
+    local args = table.concat(self._args, " ")
     local options = self:flatOptions(self._options)
     local t = {
       self._cmd,
       self._service,
       self._method,
+      args,
       options
     }
     local cmd = table.concat(t, " ")
@@ -77,7 +87,6 @@ return class.Luaws {
     local access_key = "export AWS_ACCESS_KEY_ID="..self._access_key
     local access_secret = "export AWS_SECRET_ACCESS_KEY="..self._access_secret
     local region = "export AWS_DEFAULT_REGION="..self._region
-
     local t = {
       access_key, access_secret, region, cmd
     }
