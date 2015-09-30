@@ -1,6 +1,7 @@
 local class = require("luaws.class")
 local lfs  = require("lfs")
 local SNS = require("luaws.services.sns")
+local Response = require "luaws.response"
 local table = table
 
 return class.Luaws {
@@ -35,6 +36,12 @@ return class.Luaws {
   end,
   setOption = function(self, key, value)
     self._options[key] = value
+  end,
+  getOptions = function(self)
+    return self._options
+  end,
+  cleanOptions = function(self)
+    self._options = {}
   end,
   flatOptions = function(self)
     local flat = ""
@@ -84,6 +91,13 @@ return class.Luaws {
     local result = handle:read("*a")
     handle:close()
     os.remove(tmpname)
-    return result
+    return self:toTable(result)
+  end,
+
+  toTable = function(self, response)
+      local result = Response.new(response)
+      return result:get()
   end
+
+
 }
