@@ -20,7 +20,6 @@ return class.Luaws_BaseSkel_Service {
   end,
   executor = function(self, client, params)
     local params = params or {}
-    client:cleanSkel()
     -- Load the skel if exists
     local skel = load_skel(self.service, client:getMethod())
     for key, value in pairs(params) do

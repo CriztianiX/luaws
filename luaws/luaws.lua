@@ -11,7 +11,7 @@ local escapeString = function(string)
   return "'" .. string .. "'"
 end
 
-return class.Luaws {
+local Luaws = class.Luaws {
   initialize = function(self, config)
     if not config.access_key then
       error("access_key is required for config")
@@ -29,15 +29,6 @@ return class.Luaws {
     self._method = false
     self._skel = {}
     self._cmd = "aws"
-  end,
-  SWF = function(self)
-    return SWF.new(self)
-  end,
-  SNS = function(self)
-    return SNS.new(self)
-  end,
-  S3 = function(self)
-    return S3.new(self)
   end,
   setService = function(self, service)
     self._service = service
@@ -113,5 +104,21 @@ return class.Luaws {
   toTable = function(self, response)
       local result = Response.new(response)
       return result:get()
+  end
+}
+
+
+return class.AWS_Services {
+  initialize = function(self, config)
+    self._config = config
+  end,
+  SWF = function(self)
+    return SWF.new(Luaws.new(self._config))
+  end,
+  SNS = function(self)
+    return SNS.new(Luaws.new(self._config))
+  end,
+  S3 = function(self)
+    return S3.new(Luaws.new(self._config))
   end
 }
