@@ -1,0 +1,22 @@
+{
+    "Bucket": "", 
+    "BucketLoggingStatus": {
+        "LoggingEnabled": {
+            "TargetBucket": "", 
+            "TargetGrants": [
+                {
+                    "Grantee": {
+                        "DisplayName": "", 
+                        "EmailAddress": "", 
+                        "ID": "", 
+                        "Type": "", 
+                        "URI": ""
+                    }, 
+                    "Permission": ""
+                }
+            ], 
+            "TargetPrefix": ""
+        }
+    }, 
+    "ContentMD5": ""
+}

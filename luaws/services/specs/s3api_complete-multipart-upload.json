@@ -1,0 +1,14 @@
+{
+    "Bucket": "", 
+    "Key": "", 
+    "MultipartUpload": {
+        "Parts": [
+            {
+                "ETag": "", 
+                "PartNumber": 0
+            }
+        ]
+    }, 
+    "UploadId": "", 
+    "RequestPayer": ""
+}

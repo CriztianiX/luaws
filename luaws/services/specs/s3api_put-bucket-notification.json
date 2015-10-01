@@ -1,0 +1,31 @@
+{
+    "Bucket": "", 
+    "ContentMD5": "", 
+    "NotificationConfiguration": {
+        "TopicConfiguration": {
+            "Id": "", 
+            "Events": [
+                ""
+            ], 
+            "Event": "", 
+            "Topic": ""
+        }, 
+        "QueueConfiguration": {
+            "Id": "", 
+            "Event": "", 
+            "Events": [
+                ""
+            ], 
+            "Queue": ""
+        }, 
+        "CloudFunctionConfiguration": {
+            "Id": "", 
+            "Event": "", 
+            "Events": [
+                ""
+            ], 
+            "CloudFunction": "", 
+            "InvocationRole": ""
+        }
+    }
+}

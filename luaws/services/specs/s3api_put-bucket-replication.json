@@ -1,0 +1,18 @@
+{
+    "Bucket": "", 
+    "ContentMD5": "", 
+    "ReplicationConfiguration": {
+        "Role": "", 
+        "Rules": [
+            {
+                "ID": "", 
+                "Prefix": "", 
+                "Status": "", 
+                "Destination": {
+                    "Bucket": "", 
+                    "StorageClass": ""
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "Bucket": "", 
+    "CopySource": "", 
+    "CopySourceIfMatch": "", 
+    "CopySourceIfModifiedSince": null, 
+    "CopySourceIfNoneMatch": "", 
+    "CopySourceIfUnmodifiedSince": null, 
+    "CopySourceRange": "", 
+    "Key": "", 
+    "PartNumber": 0, 
+    "UploadId": "", 
+    "SSECustomerAlgorithm": "", 
+    "SSECustomerKey": "", 
+    "SSECustomerKeyMD5": "", 
+    "CopySourceSSECustomerAlgorithm": "", 
+    "CopySourceSSECustomerKey": "", 
+    "CopySourceSSECustomerKeyMD5": "", 
+    "RequestPayer": ""
+}

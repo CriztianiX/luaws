@@ -1,0 +1,23 @@
+{
+    "Bucket": "", 
+    "CORSConfiguration": {
+        "CORSRules": [
+            {
+                "AllowedHeaders": [
+                    ""
+                ], 
+                "AllowedMethods": [
+                    ""
+                ], 
+                "AllowedOrigins": [
+                    ""
+                ], 
+                "ExposeHeaders": [
+                    ""
+                ], 
+                "MaxAgeSeconds": 0
+            }
+        ]
+    }, 
+    "ContentMD5": ""
+}

@@ -1,0 +1,28 @@
+{
+    "ACL": "", 
+    "AccessControlPolicy": {
+        "Grants": [
+            {
+                "Grantee": {
+                    "DisplayName": "", 
+                    "EmailAddress": "", 
+                    "ID": "", 
+                    "Type": "", 
+                    "URI": ""
+                }, 
+                "Permission": ""
+            }
+        ], 
+        "Owner": {
+            "DisplayName": "", 
+            "ID": ""
+        }
+    }, 
+    "Bucket": "", 
+    "ContentMD5": "", 
+    "GrantFullControl": "", 
+    "GrantRead": "", 
+    "GrantReadACP": "", 
+    "GrantWrite": "", 
+    "GrantWriteACP": ""
+}

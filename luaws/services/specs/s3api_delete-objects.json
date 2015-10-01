@@ -1,0 +1,14 @@
+{
+    "Bucket": "", 
+    "Delete": {
+        "Objects": [
+            {
+                "Key": "", 
+                "VersionId": ""
+            }
+        ], 
+        "Quiet": true
+    }, 
+    "MFA": "", 
+    "RequestPayer": ""
+}

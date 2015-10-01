@@ -1,0 +1,32 @@
+{
+    "Bucket": "", 
+    "LifecycleConfiguration": {
+        "Rules": [
+            {
+                "Expiration": {
+                    "Date": null, 
+                    "Days": 0
+                }, 
+                "ID": "", 
+                "Prefix": "", 
+                "Status": "", 
+                "Transitions": [
+                    {
+                        "Date": null, 
+                        "Days": 0, 
+                        "StorageClass": ""
+                    }
+                ], 
+                "NoncurrentVersionTransitions": [
+                    {
+                        "NoncurrentDays": 0, 
+                        "StorageClass": ""
+                    }
+                ], 
+                "NoncurrentVersionExpiration": {
+                    "NoncurrentDays": 0
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "Bucket": "", 
+    "Key": "", 
+    "VersionId": "", 
+    "RestoreRequest": {
+        "Days": 0
+    }, 
+    "RequestPayer": ""
+}

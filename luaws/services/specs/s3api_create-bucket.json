@@ -1,0 +1,12 @@
+{
+    "ACL": "", 
+    "Bucket": "", 
+    "CreateBucketConfiguration": {
+        "LocationConstraint": ""
+    }, 
+    "GrantFullControl": "", 
+    "GrantRead": "", 
+    "GrantReadACP": "", 
+    "GrantWrite": "", 
+    "GrantWriteACP": ""
+}

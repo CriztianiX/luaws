@@ -1,0 +1,31 @@
+{
+    "Bucket": "", 
+    "ContentMD5": "", 
+    "WebsiteConfiguration": {
+        "ErrorDocument": {
+            "Key": ""
+        }, 
+        "IndexDocument": {
+            "Suffix": ""
+        }, 
+        "RedirectAllRequestsTo": {
+            "HostName": "", 
+            "Protocol": ""
+        }, 
+        "RoutingRules": [
+            {
+                "Condition": {
+                    "HttpErrorCodeReturnedEquals": "", 
+                    "KeyPrefixEquals": ""
+                }, 
+                "Redirect": {
+                    "HostName": "", 
+                    "HttpRedirectCode": "", 
+                    "Protocol": "", 
+                    "ReplaceKeyPrefixWith": "", 
+                    "ReplaceKeyWith": ""
+                }
+            }
+        ]
+    }
+}
