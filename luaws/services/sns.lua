@@ -1,6 +1,6 @@
 local class = require("luaws.class")
-local Base = require("luaws.services.base")
-return class.Luaws_SNS.extends(Base) {
+local BaseSkel = require("luaws.services.base_skel")
+return class.Luaws_SNS.extends(BaseSkel) {
   service = "sns",
   listTopics = function(self, params)
     self._client:setMethod("list-topics")

@@ -5,8 +5,8 @@ return class.Luaws_S3.extends(Base) {
   putObject = function(self, params)
     self._client:setMethod("cp")
     return self:executor(self._client, params, {
-        Key = { type = "arg",  index = 1 },
-        Bucket = { type = "arg", index = 2 },
+        Key = { type = "argument", index = 1 },
+        Bucket = { type = "argument", index = 2 },
         ACL = "--acl"
     })
   end

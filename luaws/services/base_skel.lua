@@ -1,7 +1,19 @@
 local dkjson = require "dkjson"
 local class = require "luaws.class"
 
-return class.Luaws_Base_Service {
+local load_skel = function(service, method)
+  local skelpath = "luaws/services/specs/" ..
+    service .. "_" .. method .. ".json"
+  local io = io
+  local file = io.open(skelpath, "r")
+  local content = {}
+  if file then
+    content = dkjson.decode(file:read("*a"))
+  end
+  file:close()
+  return content
+end
+return class.Luaws_BaseSkel_Service {
   initialize = function(self, client)
     self._client = client
     self._client:setService(self.service)
