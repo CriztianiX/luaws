@@ -1,0 +1,14 @@
+{
+    "Key": {
+      "type": "argument",
+      "index": 1
+    },
+    "Bucket": {
+      "type": "argument",
+      "index": 2
+    },
+    "ACL": {
+      "type": "string",
+      "name": "--acl"
+    }
+}

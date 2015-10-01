@@ -1,3 +1,4 @@
+require("moon.all")
 local Luaws = require "luaws.luaws"
 local luaws = Luaws.new({
   access_key = os.getenv("AWS_ACCESS_KEY"),
@@ -5,7 +6,15 @@ local luaws = Luaws.new({
   region = os.getenv("AWS_REGION")
 })
 
-require("moon.all")
+local topics = luaws:SNS():listTopics()
+p(topics)
+
+local result = luaws:S3():putObject({
+  Key = "LICENSE",
+  Bucket = os.getenv("AWS_BUCKET") .. "LICENSE",
+  ACL = "public-read"
+})
+
 local result = luaws:SNS():createTopic({
   Name = "luaws"
 })
@@ -26,10 +35,3 @@ p(result)
 
 local topics = luaws:SNS():listTopics()
 p(topics)
-
-os.exit()
-local result = luaws:S3():putObject({
-  Key = "LICENSE",
-  Bucket = os.getenv("AWS_BUCKET") .. "LICENSE",
-  ACL = "public-read"
-})

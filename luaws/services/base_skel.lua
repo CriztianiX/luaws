@@ -1,33 +1,14 @@
-local dkjson = require "dkjson"
+local dkjson = require "luaws.deps.dkjson"
+local moses = require "luaws.deps.moses"
 local class = require "luaws.class"
+local BaseService = require "luaws.services.base"
 
-local load_skel = function(service, method)
-  local skelpath = "luaws/services/specs/" ..
-    service .. "_" .. method .. ".json"
-  local io = io
-  local file = io.open(skelpath, "r")
-  local content = {}
-  if file then
-    content = dkjson.decode(file:read("*a"))
-  end
-  file:close()
-  return content
-end
-return class.Luaws_BaseSkel_Service {
-  initialize = function(self, client)
-    self._client = client
-    self._client:setService(self.service)
-  end,
-  executor = function(self, client, params)
-    local params = params or {}
-    -- Load the skel if exists
-    local skel = load_skel(self.service, client:getMethod())
+return class.Luaws_BaseSkel_Service.extends(BaseService) {
+  parse_options = function(self, params, skel)
     for key, value in pairs(params) do
       if not skel[key] then error("Option " .. key .. " not supported!") end
       skel[key] = value
+      self._client:setSkel(skel)
     end
-
-    client:setSkel(skel)
-    return client:executor()
   end
 }

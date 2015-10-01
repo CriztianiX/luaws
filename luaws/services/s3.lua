@@ -1,13 +1,9 @@
 local class = require("luaws.class")
-local Base = require("luaws.services.base")
-return class.Luaws_S3.extends(Base) {
+local BaseCmdService = require("luaws.services.base_cmd")
+return class.Luaws_S3.extends(BaseCmdService) {
   service = "s3",
   putObject = function(self, params)
     self._client:setMethod("cp")
-    return self:executor(self._client, params, {
-        Key = { type = "argument", index = 1 },
-        Bucket = { type = "argument", index = 2 },
-        ACL = "--acl"
-    })
+    return self:executor(params)
   end
 }

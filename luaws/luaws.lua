@@ -28,6 +28,8 @@ local Luaws = class.Luaws {
     self._service = false
     self._method = false
     self._skel = {}
+    self._options = {}
+    self._args = {}
     self._cmd = "aws"
   end,
   setService = function(self, service)
@@ -35,6 +37,18 @@ local Luaws = class.Luaws {
   end,
   getMethod = function(self)
     return self._method
+  end,
+  setOption = function(self, key, value)
+    self._options[key] = value
+  end,
+  setArg = function(self, key, value)
+   self._args[key] = value
+  end,
+  getArgs = function(self)
+   return self._args
+  end,
+  getOptions = function(self)
+    return self._options
   end,
   setMethod = function(self, method)
     self._method = method
@@ -48,6 +62,13 @@ local Luaws = class.Luaws {
   cleanSkel = function(self)
     self._options = {}
   end,
+  flatOptions = function(self)
+    local flat = ""
+    for key, value in pairs(self._options) do
+      flat = flat .. " " .. key .. " " .. value
+    end
+    return flat
+  end,
   buildCommand = function(self)
     if not self._service then
       error("Service unknown or not set")
@@ -55,6 +76,9 @@ local Luaws = class.Luaws {
     if not self._method then
       error("Method unknown or not set")
     end
+
+    local args = table.concat(self._args, " ")
+    local options = self:flatOptions(self._options)
 
     local input
     if not moses.isEmpty(self._skel) then
@@ -67,6 +91,8 @@ local Luaws = class.Luaws {
       self._cmd,
       self._service,
       self._method,
+      args,
+      options,
       input
     }
     local cmd = table.concat(t, " ")
@@ -82,7 +108,7 @@ local Luaws = class.Luaws {
     if os.getenv("USE_DEBUG") then
       print(cmd)
     end
-
+    
     local access_key = "export AWS_ACCESS_KEY_ID="..self._access_key
     local access_secret = "export AWS_SECRET_ACCESS_KEY="..self._access_secret
     local region = "export AWS_DEFAULT_REGION="..self._region
