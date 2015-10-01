@@ -1,10 +1,15 @@
 local class = require("luaws.class")
-local lfs  = require("lfs")
 local SNS = require("luaws.services.sns")
 local S3 = require("luaws.services.s3")
 local SWF = require("luaws.services.swf")
 local Response = require "luaws.response"
+local dkjson = require "luaws.deps.dkjson"
+local moses = require "luaws.deps.moses"
 local table = table
+
+local escapeString = function(string)
+  return "'" .. string .. "'"
+end
 
 return class.Luaws {
   initialize = function(self, config)
@@ -17,15 +22,12 @@ return class.Luaws {
     if not config.region then
       error("region is required for config")
     end
-
     self._access_key = config.access_key
     self._access_secret = config.access_secret
     self._region = config.region
-
     self._service = false
     self._method = false
-    self._options = {}
-    self._args = {}
+    self._skel = {}
     self._cmd = "aws"
   end,
   SWF = function(self)
@@ -40,30 +42,20 @@ return class.Luaws {
   setService = function(self, service)
     self._service = service
   end,
+  getMethod = function(self)
+    return self._method
+  end,
   setMethod = function(self, method)
     self._method = method
   end,
-  setOption = function(self, key, value)
-    self._options[key] = value
+  setSkel = function(self, skel)
+    self._skel = skel
   end,
-  setArg = function(self, key, value)
-    self._args[key] = value
+  getSkel = function(self)
+    return self._skel
   end,
-  getOptions = function(self)
-    return self._options
-  end,
-  cleanArgs = function(self)
-    self._args = {}
-  end,
-  cleanOptions = function(self)
+  cleanSkel = function(self)
     self._options = {}
-  end,
-  flatOptions = function(self)
-    local flat = ""
-    for key, value in pairs(self._options) do
-      flat = flat .. " " .. key .. " " .. value
-    end
-    return flat
   end,
   buildCommand = function(self)
     if not self._service then
@@ -73,14 +65,18 @@ return class.Luaws {
       error("Method unknown or not set")
     end
 
-    local args = table.concat(self._args, " ")
-    local options = self:flatOptions(self._options)
+    local input
+    if not moses.isEmpty(self._skel) then
+      local t = { "--cli-input-json", escapeString(dkjson.encode(self._skel))
+      }
+      input = table.concat(t, " ")
+    end
+
     local t = {
       self._cmd,
       self._service,
       self._method,
-      args,
-      options
+      input
     }
     local cmd = table.concat(t, " ")
     return cmd
@@ -111,14 +107,11 @@ return class.Luaws {
     local handle = popen("bash " .. tmpname)
     local result = handle:read("*a")
     handle:close()
-    --  os.remove(tmpname)
+    os.remove(tmpname)
     return self:toTable(result)
   end,
-
   toTable = function(self, response)
       local result = Response.new(response)
       return result:get()
   end
-
-
 }

@@ -1,0 +1,14 @@
+{
+    "TopicArn": "", 
+    "TargetArn": "", 
+    "Message": "", 
+    "Subject": "", 
+    "MessageStructure": "", 
+    "MessageAttributes": {
+        "KeyName": {
+            "DataType": "", 
+            "StringValue": "", 
+            "BinaryValue": null
+        }
+    }
+}

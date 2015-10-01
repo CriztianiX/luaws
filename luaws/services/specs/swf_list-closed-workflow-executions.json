@@ -1,0 +1,27 @@
+{
+    "domain": "", 
+    "startTimeFilter": {
+        "oldestDate": null, 
+        "latestDate": null
+    }, 
+    "closeTimeFilter": {
+        "oldestDate": null, 
+        "latestDate": null
+    }, 
+    "executionFilter": {
+        "workflowId": ""
+    }, 
+    "closeStatusFilter": {
+        "status": ""
+    }, 
+    "typeFilter": {
+        "name": "", 
+        "version": ""
+    }, 
+    "tagFilter": {
+        "tag": ""
+    }, 
+    "nextPageToken": "", 
+    "maximumPageSize": 0, 
+    "reverseOrder": true
+}

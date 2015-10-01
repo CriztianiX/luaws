@@ -1,0 +1,14 @@
+{
+    "domain": "", 
+    "name": "", 
+    "version": "", 
+    "description": "", 
+    "defaultTaskStartToCloseTimeout": "", 
+    "defaultTaskHeartbeatTimeout": "", 
+    "defaultTaskList": {
+        "name": ""
+    }, 
+    "defaultTaskPriority": "", 
+    "defaultTaskScheduleToStartTimeout": "", 
+    "defaultTaskScheduleToCloseTimeout": ""
+}

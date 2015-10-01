@@ -1,0 +1,20 @@
+{
+    "domain": "", 
+    "workflowId": "", 
+    "workflowType": {
+        "name": "", 
+        "version": ""
+    }, 
+    "taskList": {
+        "name": ""
+    }, 
+    "taskPriority": "", 
+    "input": "", 
+    "executionStartToCloseTimeout": "", 
+    "tagList": [
+        ""
+    ], 
+    "taskStartToCloseTimeout": "", 
+    "childPolicy": "", 
+    "lambdaRole": ""
+}

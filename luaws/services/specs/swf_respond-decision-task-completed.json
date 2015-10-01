@@ -1,0 +1,104 @@
+{
+    "taskToken": "", 
+    "decisions": [
+        {
+            "decisionType": "", 
+            "scheduleActivityTaskDecisionAttributes": {
+                "activityType": {
+                    "name": "", 
+                    "version": ""
+                }, 
+                "activityId": "", 
+                "control": "", 
+                "input": "", 
+                "scheduleToCloseTimeout": "", 
+                "taskList": {
+                    "name": ""
+                }, 
+                "taskPriority": "", 
+                "scheduleToStartTimeout": "", 
+                "startToCloseTimeout": "", 
+                "heartbeatTimeout": ""
+            }, 
+            "requestCancelActivityTaskDecisionAttributes": {
+                "activityId": ""
+            }, 
+            "completeWorkflowExecutionDecisionAttributes": {
+                "result": ""
+            }, 
+            "failWorkflowExecutionDecisionAttributes": {
+                "reason": "", 
+                "details": ""
+            }, 
+            "cancelWorkflowExecutionDecisionAttributes": {
+                "details": ""
+            }, 
+            "continueAsNewWorkflowExecutionDecisionAttributes": {
+                "input": "", 
+                "executionStartToCloseTimeout": "", 
+                "taskList": {
+                    "name": ""
+                }, 
+                "taskPriority": "", 
+                "taskStartToCloseTimeout": "", 
+                "childPolicy": "", 
+                "tagList": [
+                    ""
+                ], 
+                "workflowTypeVersion": "", 
+                "lambdaRole": ""
+            }, 
+            "recordMarkerDecisionAttributes": {
+                "markerName": "", 
+                "details": ""
+            }, 
+            "startTimerDecisionAttributes": {
+                "timerId": "", 
+                "control": "", 
+                "startToFireTimeout": ""
+            }, 
+            "cancelTimerDecisionAttributes": {
+                "timerId": ""
+            }, 
+            "signalExternalWorkflowExecutionDecisionAttributes": {
+                "workflowId": "", 
+                "runId": "", 
+                "signalName": "", 
+                "input": "", 
+                "control": ""
+            }, 
+            "requestCancelExternalWorkflowExecutionDecisionAttributes": {
+                "workflowId": "", 
+                "runId": "", 
+                "control": ""
+            }, 
+            "startChildWorkflowExecutionDecisionAttributes": {
+                "workflowType": {
+                    "name": "", 
+                    "version": ""
+                }, 
+                "workflowId": "", 
+                "control": "", 
+                "input": "", 
+                "executionStartToCloseTimeout": "", 
+                "taskList": {
+                    "name": ""
+                }, 
+                "taskPriority": "", 
+                "taskStartToCloseTimeout": "", 
+                "childPolicy": "", 
+                "tagList": [
+                    ""
+                ], 
+                "lambdaRole": ""
+            }, 
+            "scheduleLambdaFunctionDecisionAttributes": {
+                "id": "", 
+                "name": "", 
+                "input": "", 
+                "startToCloseTimeout": ""
+            }
+        }
+    ], 
+    "executionContext": ""
+}

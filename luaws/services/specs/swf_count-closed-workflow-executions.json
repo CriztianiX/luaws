@@ -1,0 +1,24 @@
+{
+    "domain": "", 
+    "startTimeFilter": {
+        "oldestDate": null, 
+        "latestDate": null
+    }, 
+    "closeTimeFilter": {
+        "oldestDate": null, 
+        "latestDate": null
+    }, 
+    "executionFilter": {
+        "workflowId": ""
+    }, 
+    "typeFilter": {
+        "name": "", 
+        "version": ""
+    }, 
+    "tagFilter": {
+        "tag": ""
+    }, 
+    "closeStatusFilter": {
+        "status": ""
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "domain": "", 
+    "name": "", 
+    "version": "", 
+    "description": "", 
+    "defaultTaskStartToCloseTimeout": "", 
+    "defaultExecutionStartToCloseTimeout": "", 
+    "defaultTaskList": {
+        "name": ""
+    }, 
+    "defaultTaskPriority": "", 
+    "defaultChildPolicy": "", 
+    "defaultLambdaRole": ""
+}
