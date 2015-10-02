@@ -1,14 +1,17 @@
 local dkjson = require "luaws.deps.dkjson"
-local exec = function(cmd)
+local persistence = require 'persistence'
+local exec = function(cmd, service, module)
   print("Skel: " .. cmd)
   local popen = io.popen
   local handle = popen(cmd)
   local result = handle:read("*a")
   handle:close()
   local t = dkjson.decode(result)
-  --require "moon.all"
-  --p(t)
-  --os.exit()
+  if type(t) == "table" then
+    local f = "luaws/services/specs/" ..
+      service .. "_" .. module .. ".lua"
+    persistence.store(f, t)
+  end
 end
 
 local services = {
@@ -79,7 +82,7 @@ end
 for service, method in pairs(r) do
   for _, value  in ipairs(method) do
     local f = "luaws/services/specs/" .. service .. "_" .. value .. ".json"
-    local cmd = "aws " .. service .. " " .. value .. " --generate-cli-skeleton > " .. f
-    exec(cmd)
+    local cmd = "aws " .. service .. " " .. value .. " --generate-cli-skeleton"
+    exec(cmd, service, value)
   end
 end
