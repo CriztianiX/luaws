@@ -1,9 +1,0 @@
-{
-    "Bucket": "", 
-    "ContentMD5": "", 
-    "MFA": "", 
-    "VersioningConfiguration": {
-        "MFADelete": "", 
-        "Status": ""
-    }
-}

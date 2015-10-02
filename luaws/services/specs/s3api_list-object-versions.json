@@ -1,9 +1,0 @@
-{
-    "Bucket": "", 
-    "Delimiter": "", 
-    "EncodingType": "", 
-    "KeyMarker": "", 
-    "MaxKeys": 0, 
-    "Prefix": "", 
-    "VersionIdMarker": ""
-}

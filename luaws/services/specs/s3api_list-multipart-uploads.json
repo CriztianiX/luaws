@@ -1,9 +1,0 @@
-{
-    "Bucket": "", 
-    "Delimiter": "", 
-    "EncodingType": "", 
-    "KeyMarker": "", 
-    "MaxUploads": 0, 
-    "Prefix": "", 
-    "UploadIdMarker": ""
-}
