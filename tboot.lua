@@ -9,6 +9,18 @@ describe("Luaws, a bridge to aws-cli", function()
     })
   end)
   --
+  -- SWF
+  describe("-> SWF ->", function()
+    it("should list domain REGISTERED domains", function()
+      local domains = luaws:SWF():listDomains({
+        registrationStatus = "REGISTERED"
+      })
+
+      assert.are_not.equals(nil, domains.domainInfos)
+    end)
+  end)
+
+  --
   -- SNS
   describe("-> SNS ->", function()
     it("should create a topic", function()
