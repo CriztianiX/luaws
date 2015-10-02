@@ -1,4 +1,3 @@
-require("moon.all")
 describe("Luaws, a bridge to aws-cli", function()
   local luaws, topic_arn
   setup(function()
