@@ -42,6 +42,14 @@ local services = {
     "set-platform-application-attributes","set-subscription-attributes","set-topic-attributes",
     "subscribe","unsubscribe"
   },
+  sqs = {
+    "add-permission",
+    "change-message-visibility","change-message-visibility-batch","create-queue",
+    "delete-message","delete-message-batch","delete-queue","get-queue-attributes",
+    "get-queue-url","list-dead-letter-source-queues","list-queues","purge-queue",
+    "receive-message","remove-permission","send-message","send-message-batch",
+    "set-queue-attributes"
+  },
   swf = {
     "count-closed-workflow-executions", "count-open-workflow-executions", "count-pending-activity-tasks",
     "count-pending-decision-tasks", "deprecate-activity-type", "deprecate-domain","deprecate-workflow-type",
@@ -56,7 +64,19 @@ local services = {
   }
 }
 
-for service, method in pairs(services) do
+local r = {}
+if arg[1] then
+  local s = arg[1]
+  if not services[s] then
+    error("Unknow service: " .. s)
+  end
+
+  r[s] = services[s]
+else
+  r = services
+end
+
+for service, method in pairs(r) do
   for _, value  in ipairs(method) do
     local f = "luaws/services/specs/" .. service .. "_" .. value .. ".json"
     local cmd = "aws " .. service .. " " .. value .. " --generate-cli-skeleton > " .. f

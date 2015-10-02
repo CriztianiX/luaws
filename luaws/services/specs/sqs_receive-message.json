@@ -1,0 +1,12 @@
+{
+    "QueueUrl": "", 
+    "AttributeNames": [
+        ""
+    ], 
+    "MessageAttributeNames": [
+        ""
+    ], 
+    "MaxNumberOfMessages": 0, 
+    "VisibilityTimeout": 0, 
+    "WaitTimeSeconds": 0
+}
