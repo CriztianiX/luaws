@@ -1,4 +1,4 @@
-local dkjson = require "dkjson"
+local dkjson = require "luaws.deps.dkjson"
 local exec = function(cmd)
   print("Skel: " .. cmd)
   local popen = io.popen
