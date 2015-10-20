@@ -1,7 +1,11 @@
 local class = require("luaws.class")
 local BaseSkel = require("luaws.services.base_skel")
-return class.Luaws_SNS.extends(BaseSkel) {
+local methods = {
   service = "sns",
+  createPlatformEndpoint = function(self, params)
+    self._client:setMethod("create-platform-endpoint")
+    return self:executor(params)
+  end,
   listTopics = function(self, params)
     self._client:setMethod("list-topics")
     return self:executor(params)
@@ -19,3 +23,4 @@ return class.Luaws_SNS.extends(BaseSkel) {
     return self:executor(params)
   end
 }
+return class.Luaws_SNS.extends(BaseSkel)(methods)
