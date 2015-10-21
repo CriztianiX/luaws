@@ -1,4 +1,4 @@
-local dkjson = require "dkjson"
+local dkjson = require "luaws.deps.dkjson"
 local class = require "luaws.class"
 local moses = require "luaws.deps.moses"
 local load_skel = function(service, method)
