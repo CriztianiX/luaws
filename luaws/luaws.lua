@@ -1,17 +1,17 @@
 local class = require("luaws.class")
 local LuawsCore = require("luaws.core")
-
-return class.Luaws {
+local Luaws = class.Luaws({
   initialize = function(self, config)
     self._config = config
-  end,
-  SWF = function(self)
-    return require("luaws.services.swf").new(LuawsCore.new(self._config))
-  end,
-  SNS = function(self)
-    return require("luaws.services.sns").new(LuawsCore.new(self._config))
-  end,
-  S3 = function(self)
-    return require("luaws.services.s3").new(LuawsCore.new(self._config))
   end
-}
+})
+
+local s = {"SWF", "SNS", "S3", "SQS"}
+for i=1,#s do
+  local ss = s[i]
+  Luaws[ss] = function(self)
+    local sss = "luaws.services." .. ss:lower()
+    return require(sss).new(LuawsCore.new(self._config))
+  end
+end
+return Luaws

@@ -104,9 +104,9 @@ return class.Luaws_Core {
     if os.getenv("USE_DEBUG") then
       print(cmd)
     end
-    local access_key = "export AWS_ACCESS_KEY_ID="..self._access_key
-    local access_secret = "export AWS_SECRET_ACCESS_KEY="..self._access_secret
-    local region = "export AWS_DEFAULT_REGION="..self._region
+    local access_key = "export AWS_ACCESS_KEY_ID='"..self._access_key.."'"
+    local access_secret = "export AWS_SECRET_ACCESS_KEY='"..self._access_secret.."'"
+    local region = "export AWS_DEFAULT_REGION='"..self._region.."'"
     local t = {
       access_key, access_secret, region, cmd
     }

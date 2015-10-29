@@ -1,11 +1,66 @@
 describe("Luaws, a bridge to aws-cli", function()
-  local luaws, topic_arn
+  local messages, message_id, queue_url, luaws, topic_arn
   setup(function()
     luaws = require("luaws.luaws").new({
       access_key = os.getenv("AWS_ACCESS_KEY"),
       access_secret = os.getenv("AWS_ACCESS_SECRET"),
       region = os.getenv("AWS_REGION")
     })
+  end)
+  --
+  -- SQS
+  describe("-> SQS -> #sqs", function()
+    it("should create a new queue", function()
+      local queue = luaws:SQS():createQueue({
+        QueueName = os.getenv("AWS_QUEUE")
+      })
+      assert.are_not.equals("table", queue.QueueUrl)
+      queue_url = queue.QueueUrl
+    end)
+  end)
+  describe("-> SQS -> #sqs", function()
+    it("should returns a list of your queues", function()
+      local queues = luaws:SQS():listQueues()
+      assert.are.equals("table", type(queues))
+    end)
+  end)
+  describe("-> SQS -> #sqs", function()
+    it("Delivers a message to the specified queue", function()
+      local message = luaws:SQS():sendMessage({
+        MessageBody = "A simple test SQS",
+        QueueUrl = queue_url
+
+      assert(message.MessageId)
+      message_id = message.MessageId
+    end)
+  end)
+  describe("-> SQS -> #sqs", function()
+    it("Retrieves one or more messages", function()
+      local rmessages = luaws:SQS():receiveMessage({
+        QueueUrl = queue_url
+      })
+      assert(rmessages.Messages)
+      messages = rmessages.Messages
+    end)
+  end)
+  describe("-> SQS -> #sqs", function()
+    it("Deletes the specified message from the specified queue.", function()
+      for _,m in ipairs(messages) do
+        local res = luaws:SQS():deleteMessage({
+          QueueUrl = queue_url,
+          ReceiptHandle = m.ReceiptHandle
+        })
+        assert.is.equal(nil, res)
+      end
+    end)
+  end)
+  describe("-> SQS -> #sqs", function()
+    it("should delete a queue", function()
+      local queue = luaws:SQS():deleteQueue({
+        QueueUrl = queue_url
+      })
+      assert.is.equal(nil, queue)
+    end)
   end)
   --
   -- SWF
