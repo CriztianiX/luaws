@@ -29,6 +29,7 @@ describe("Luaws, a bridge to aws-cli", function()
       local message = luaws:SQS():sendMessage({
         MessageBody = "A simple test SQS",
         QueueUrl = queue_url
+      })
 
       assert(message.MessageId)
       message_id = message.MessageId
