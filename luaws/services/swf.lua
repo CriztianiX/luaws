@@ -1,13 +1,13 @@
 local class = require("luaws.class")
 local BaseSkel = require("luaws.services.base_skel")
-return class.Luaws_SWF.extends(BaseSkel) {
-  service = "swf",
-  listDomains = function(self, params)
-    self._client:setMethod("list-domains")
-    return self:executor(params)
-  end,
-  pollForDecisionTask = function(self, params)
-    self._client:setMethod("poll-for-decision-task")
-    return self:executor(params)
-  end
-}
+
+local Luaws_Service_SWF = class.Luaws_Service_SWF.extends(BaseSkel)({
+  service = "swf"
+})
+
+Luaws_Service_SWF:parse_operations({
+  listDomains = "list-domains",
+  pollForDecisionTask = "poll-for-decision-task"
+})
+
+return Luaws_Service_SWF

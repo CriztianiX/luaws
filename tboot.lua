@@ -17,14 +17,10 @@ describe("Luaws, a bridge to aws-cli", function()
       assert.are_not.equals("table", queue.QueueUrl)
       queue_url = queue.QueueUrl
     end)
-  end)
-  describe("-> SQS -> #sqs", function()
     it("should returns a list of your queues", function()
       local queues = luaws:SQS():listQueues()
       assert.are.equals("table", type(queues))
     end)
-  end)
-  describe("-> SQS -> #sqs", function()
     it("Delivers a message to the specified queue", function()
       local message = luaws:SQS():sendMessage({
         MessageBody = "A simple test SQS",
@@ -34,8 +30,6 @@ describe("Luaws, a bridge to aws-cli", function()
       assert(message.MessageId)
       message_id = message.MessageId
     end)
-  end)
-  describe("-> SQS -> #sqs", function()
     it("Retrieves one or more messages", function()
       local rmessages = luaws:SQS():receiveMessage({
         QueueUrl = queue_url
@@ -43,8 +37,6 @@ describe("Luaws, a bridge to aws-cli", function()
       assert(rmessages.Messages)
       messages = rmessages.Messages
     end)
-  end)
-  describe("-> SQS -> #sqs", function()
     it("Deletes the specified message from the specified queue.", function()
       for _,m in ipairs(messages) do
         local res = luaws:SQS():deleteMessage({
@@ -54,8 +46,6 @@ describe("Luaws, a bridge to aws-cli", function()
         assert.is.equal(nil, res)
       end
     end)
-  end)
-  describe("-> SQS -> #sqs", function()
     it("should delete a queue", function()
       local queue = luaws:SQS():deleteQueue({
         QueueUrl = queue_url
@@ -65,7 +55,7 @@ describe("Luaws, a bridge to aws-cli", function()
   end)
   --
   -- SWF
-  describe("-> SWF ->", function()
+  describe("-> SWF -> #swf", function()
     it("should list domain REGISTERED domains", function()
       local domains = luaws:SWF():listDomains({
         registrationStatus = "REGISTERED"
@@ -77,7 +67,7 @@ describe("Luaws, a bridge to aws-cli", function()
 
   --
   -- SNS
-  describe("-> SNS ->", function()
+  describe("-> SNS -> #sns", function()
     it("should create a topic", function()
       local topic = luaws:SNS():createTopic({
         Name = "luaws"

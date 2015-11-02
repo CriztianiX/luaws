@@ -4,6 +4,14 @@ local class = require "luaws.class"
 local BaseService = require "luaws.services.base"
 
 return class.Luaws_BaseSkel_Service.extends(BaseService) {
+  parse_operations = function(self, operations)
+    for op, arg in pairs(operations) do
+      self[op] = function(self, params)
+        self._client:setMethod(arg)
+        return self:executor(params)
+      end
+    end
+  end,
   parse_options = function(self, params, skel)
     -- Clenup unfilled params
     for key in pairs(skel) do
