@@ -95,7 +95,7 @@ return class.Luaws_Core {
     local cmd = table.concat(t, " ")
     return cmd
   end,
-  buildScript = function(self)
+  buildScript = function(self, status_tmpfile)
     local os = os
     local io = io
     local tmpname = os.tmpname ()
@@ -107,8 +107,10 @@ return class.Luaws_Core {
     local access_key = "export AWS_ACCESS_KEY_ID='"..self._access_key.."'"
     local access_secret = "export AWS_SECRET_ACCESS_KEY='"..self._access_secret.."'"
     local region = "export AWS_DEFAULT_REGION='"..self._region.."'"
+    local sstatus = "echo $? > " .. status_tmpfile
     local t = {
-      access_key, access_secret, region, cmd
+      access_key, access_secret, region, cmd,
+      sstatus
     }
     local lines = table.concat(t, "\n")
 
@@ -117,8 +119,9 @@ return class.Luaws_Core {
     return tmpname
   end,
   executor = function(self)
-    local tmpname = self:buildScript()
-    local result = exec(tmpname)
+    local status_tmpfile = os.tmpname ()
+    local tmpname = self:buildScript(status_tmpfile)
+    local result = exec(tmpname, status_tmpfile)
     return self:toTable(result)
   end,
   toTable = function(self, response)
