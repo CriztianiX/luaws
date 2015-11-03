@@ -96,7 +96,7 @@ describe("Luaws, a bridge to aws-cli", function()
   end)
   --
   -- S3
-  describe("-> S3 ->", function()
+  describe("-> S3 -> #s3", function()
     it("should create a bucket", function()
       local bucket = luaws:S3():createBucket({
         Bucket = os.getenv("AWS_BUCKET"),
