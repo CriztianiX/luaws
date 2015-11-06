@@ -66,7 +66,7 @@ return class.Luaws_Core {
     end
     return flat
   end,
-  buildCommand = function(self)
+  buildCommand = function(self, result_file)
     if not self._service then
       error("Service unknown or not set")
     end
@@ -93,27 +93,23 @@ return class.Luaws_Core {
       input
     }
     local cmd = table.concat(t, " ")
-    return cmd
+    return cmd .. " | tee " .. result_file
   end,
-  buildScript = function(self, status_tmpfile)
+  buildScript = function(self, result_file)
     local os = os
     local io = io
     local tmpname = os.tmpname ()
     local f = io.open(tmpname, "w")
-    local cmd = self:buildCommand()
+    local cmd = self:buildCommand(result_file)
     if os.getenv("USE_DEBUG") then
       print(cmd)
     end
     local access_key = "export AWS_ACCESS_KEY_ID='"..self._access_key.."'"
     local access_secret = "export AWS_SECRET_ACCESS_KEY='"..self._access_secret.."'"
     local region = "export AWS_DEFAULT_REGION='"..self._region.."'"
-    local sstatus = "echo $? > " .. status_tmpfile
-    local t = {
-      access_key, access_secret, region, cmd,
-      sstatus
-    }
-    require"moon.all"
-    p(t)
+    local t = { access_key, access_secret, region, cmd }
+    --require"moon.all"
+    --p(cmd)
     local lines = table.concat(t, "\n")
 
     f:write(lines)
