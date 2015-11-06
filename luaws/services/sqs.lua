@@ -1,16 +1,14 @@
-local class = require("luaws.class")
-local BaseSkel = require("luaws.services.base_skel")
-local Luaws_Service_SQS = class.Luaws_Service_SQS.extends(BaseSkel)({
-  service = "sqs"
-})
-
-Luaws_Service_SQS:parse_operations({
+local class = require 'middleclass'
+local Luaws_Service = require 'luaws.service'
+local Luaws_Services_SQS = class('Luaws_Services_SQS', Luaws_Service)
+Luaws_Services_SQS.static.service_type = "json"
+Luaws_Services_SQS.static.service = "sqs"
+Luaws_Services_SQS.static.methods = {
   "createQueue",
   "deleteQueue",
   "deleteMessage",
   "listQueues",
   "receiveMessage",
   "sendMessage"
-})
-
-return Luaws_Service_SQS
+}
+return Luaws_Services_SQS

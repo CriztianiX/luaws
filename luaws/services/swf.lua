@@ -1,10 +1,10 @@
-local class = require("luaws.class")
-local BaseSkel = require("luaws.services.base_skel")
-local Luaws_Service_SWF = class.Luaws_Service_SWF.extends(BaseSkel)({
-  service = "swf"
-})
-Luaws_Service_SWF:parse_operations({
-  "listDomains", "pollForDecisionTask"
-})
-
-return Luaws_Service_SWF
+local class = require 'middleclass'
+local Luaws_Service = require 'luaws.service'
+local Luaws_Services_SWF = class('Luaws_Services_SWF', Luaws_Service)
+Luaws_Services_SWF.static.service_type = "json"
+Luaws_Services_SWF.static.service = "swf"
+Luaws_Services_SWF.static.methods = {
+  "listDomains",
+  "pollForDecisionTask"
+}
+return Luaws_Services_SWF

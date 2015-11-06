@@ -112,6 +112,8 @@ return class.Luaws_Core {
       access_key, access_secret, region, cmd,
       sstatus
     }
+    require"moon.all"
+    p(t)
     local lines = table.concat(t, "\n")
 
     f:write(lines)

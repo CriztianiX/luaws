@@ -1,10 +1,10 @@
-local class = require("luaws.class")
-local BaseSkel = require("luaws.services.base_skel")
-local Luaws_Service_S3 = class.Luaws_Service_S3.extends(BaseSkel) {
-  service = "s3api"
-}
-Luaws_Service_S3:parse_operations({
+local class = require 'middleclass'
+local Luaws_Service = require 'luaws.service'
+local Luaws_Services_S3 = class('Luaws_Services_S3', Luaws_Service)
+Luaws_Services_S3.static.service_type = "json"
+Luaws_Services_S3.static.service = "s3api"
+Luaws_Services_S3.static.methods = {
   "createBucket", "deleteBucket", "deleteObject", "listBuckets",
   "putObject"
-})
-return Luaws_Service_S3
+}
+return Luaws_Services_S3
