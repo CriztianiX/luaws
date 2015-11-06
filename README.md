@@ -1,9 +1,23 @@
 # luaws
 ## lua bridge to aws-cli (a proof of concept)
 
-To install just copy luaws/ folder at you library path
-
+To install just copy luaws/ folder at you library path.
 At the moment take a look at tboot.lua to see how it works.
+
+### Describe method's structure
+You can use getMethodStructure() to gets the available structure.
+
+```lua
+local luaws = require("luaws.luaws").new({
+  access_key = os.getenv("AWS_ACCESS_KEY"),
+  access_secret = os.getenv("AWS_ACCESS_SECRET"),
+  region = os.getenv("AWS_REGION")
+})
+luaws:SQS():getMethodStructure("createQueue")
+```
+
+
+
 To run test create a file called tboot.sh and complete with your settings
 ```bash
 export AWS_ACCESS_KEY=""
