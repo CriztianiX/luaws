@@ -7,6 +7,18 @@ describe("Luaws, a bridge to aws-cli", function()
       region = os.getenv("AWS_REGION")
     })
   end)
+
+  describe("-> #base", function()
+    it("should view structure", function()
+      local queue = luaws:SQS():getMethodStructure("createQueue")
+      assert.are.same({
+        QueueName = "",
+        Attributes = {
+          KeyName = ""
+        }
+      }, queue)
+    end)
+  end)
   --
   -- SQS
   describe("-> SQS -> #sqs", function()
