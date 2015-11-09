@@ -19,5 +19,6 @@ dependencies = {
 }
 
 build = {
-	type = "command"
+	type = "command",
+	install_command = "rm -rf /usr/local/share/lua/5.1/luaws ; cp -r luaws /usr/local/share/lua/5.1/luaws"
 }
