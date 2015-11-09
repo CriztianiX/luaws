@@ -1,6 +1,8 @@
 # luaws
 ## lua bridge to aws-cli (a proof of concept)
 
+[![Coverage Status](https://coveralls.io/repos/CriztianiX/luaws/badge.svg?branch=master&service=github)](https://coveralls.io/github/CriztianiX/luaws?branch=master)
+
 To install just copy luaws/ folder at you library path.
 At the moment take a look at tboot.lua to see how it works.
 
