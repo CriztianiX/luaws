@@ -95,32 +95,22 @@ return class.Luaws_Core {
     local cmd = table.concat(t, " ")
     return cmd
   end,
-  buildScript = function(self, status_tmpfile)
+  buildScript = function(self)
     local os = os
-    local io = io
-    local tmpname = os.tmpname ()
-    local f = io.open(tmpname, "w")
     local cmd = self:buildCommand()
     if os.getenv("USE_DEBUG") then
       print(cmd)
     end
-    local access_key = "export AWS_ACCESS_KEY_ID='"..self._access_key.."'"
-    local access_secret = "export AWS_SECRET_ACCESS_KEY='"..self._access_secret.."'"
-    local region = "export AWS_DEFAULT_REGION='"..self._region.."'"
-    local sstatus = "echo $? > " .. status_tmpfile
-    local t = { access_key, access_secret, region, cmd,  sstatus }
-    --require"moon.all"
-    --p(cmd)
-    local lines = table.concat(t, "\n")
-
-    f:write(lines)
-    f:close()
-    return tmpname
+    local access_key = "AWS_ACCESS_KEY_ID="..escapeString(self._access_key)
+    local access_secret = "AWS_SECRET_ACCESS_KEY='"..self._access_secret.."'"
+    local region = "AWS_DEFAULT_REGION='"..self._region.."'"
+    local t = { access_key, access_secret, region, cmd}
+    local lines = table.concat(t, " ")
+    return lines
   end,
   executor = function(self)
-    local status_tmpfile = os.tmpname ()
-    local tmpname = self:buildScript(status_tmpfile)
-    local result = exec(tmpname, status_tmpfile)
+    local command = self:buildScript()
+    local result = exec(command)
     return self:toTable(result)
   end,
   toTable = function(self, response)
