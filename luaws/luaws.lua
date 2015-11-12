@@ -8,7 +8,7 @@ local Luaws = class.Luaws({
   end
 })
 
-local s = {"SWF", "SNS", "S3", "SQS"}
+local s = Luaws_Services_Factory.services()
 for i=1,#s do
   local ss = s[i]
   Luaws[ss] = function(self)
