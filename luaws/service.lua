@@ -14,6 +14,7 @@ local parse_json_input = function(params)
 end
 
 function Luaws_Service:initialize()
+
   for _, op in pairs(self.class.static.methods) do
     self[op] = function(self, params)
       self._core:setMethod(dasherize(op))

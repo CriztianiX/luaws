@@ -1,4 +1,5 @@
 local class = require 'middleclass'
+local Luaws_Services_CloudWatch = require 'luaws.services.cloud_watch'
 local Luaws_Services_S3 = require 'luaws.services.s3'
 local Luaws_Services_SNS = require 'luaws.services.sns'
 local Luaws_Services_SQS = require 'luaws.services.sqs'
@@ -6,6 +7,9 @@ local Luaws_Services_SWF = require 'luaws.services.swf'
 local Luaws_Services_Factory = class('Luaws_Services_Factory')
 
 local services = {
+  CloudWatch = function()
+    return Luaws_Services_CloudWatch:new()
+  end,
   S3 = function()
     return Luaws_Services_S3:new()
   end,
@@ -23,7 +27,7 @@ local services = {
 function Luaws_Services_Factory.static.services()
   local s = {}
   local tinsert = table.insert
-  for service,_ in ipairs(services) do
+  for service,_ in pairs(services) do
     tinsert(s, service)
   end
   return s

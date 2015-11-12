@@ -20,6 +20,31 @@ describe("Luaws, a bridge to aws-cli", function()
     end)
   end)
   --
+  -- cloudwatch
+  describe("-> SQS -> #cloudwatch", function()
+    it("should show method structure in list metrics", function()
+      local cloudwatch = luaws:CloudWatch():getMethodStructure("listMetrics")
+      assert.are.same({
+        Dimensions = {
+          {
+            Name = '',
+            Value = ''
+          }
+        },
+        MetricName = '',
+        Namespace = '',
+        NextToken = ''
+      }, cloudwatch)
+    end)
+    it("should get list metrics", function()
+      local cloudwatch = luaws:CloudWatch():listMetrics({
+        Namespace = "AWS/SNS",
+        MetricName = "NumberOfNotificationsDelivered"
+      })
+      assert(cloudwatch.Metrics)
+    end)
+  end)
+  --
   -- SQS
   describe("-> SQS -> #sqs", function()
     it("should create a new queue", function()

@@ -27,7 +27,7 @@ end
 return function(command)
   local success, signal, status, result = exec(command)
   if status ~= 0 then
-    error("error code: " .. status)
+    error(result .. " error code: " .. status)
   end
 
   return result
