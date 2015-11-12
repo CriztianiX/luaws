@@ -1,9 +1,12 @@
-# luaws
+# luaws - lua aws - amazon web services
 ## lua bridge to aws-cli (a proof of concept)
 
 [![Coverage Status](https://coveralls.io/repos/CriztianiX/luaws/badge.svg?branch=master&service=github)](https://coveralls.io/github/CriztianiX/luaws?branch=master)
 
-To install just copy luaws/ folder at you library path.
+To install using luarocks: 
+```bash
+$ sudo luarocks make
+```
 At the moment take a look at tboot.lua to see how it works.
 
 ### Describe method's structure
@@ -34,5 +37,5 @@ busted "$@" tboot.lua
 and run with:
 
 ```bash
-bash tboot.sh
+$ bash tboot.sh
 ```
