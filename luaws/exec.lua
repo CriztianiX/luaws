@@ -1,10 +1,8 @@
 require 'compat53'
 
-local clean_up = function(...)
+local clean_up = function(file)
   local os = os
-  for i,v in ipairs(arg) do
-    os.remove(v)
-  end
+  return os.remove(file)
 end
 
 local read_file = function(file)
